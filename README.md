@@ -1,0 +1,1 @@
+# memberpress-ai-assistant-hooks-tester
