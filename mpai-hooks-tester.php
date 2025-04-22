@@ -34,8 +34,8 @@ class MPAI_Hooks_Tester {
         // Register hooks for testing
         $this->register_hooks();
         
-        // Initialize content hooks tester
-        $this->init_content_hooks_tester();
+        // We'll let init.php handle the initialization of the content hooks tester
+        // to avoid duplicate initialization
     }
     
     /**
@@ -484,25 +484,35 @@ class MPAI_Hooks_Tester {
         return $selected_agent_id;
     }
     
-    /**
-     * Initialize content hooks tester
-     */
-    private function init_content_hooks_tester() {
-        // Include the content hooks tester class
-        require_once plugin_dir_path(__FILE__) . 'includes/class-mpai-content-hooks-tester.php';
-        
-        // Initialize the content hooks tester
-        new MPAI_Content_Hooks_Tester();
-        
-        $this->log('Content Hooks Tester initialized');
-    }
+    // Content hooks tester is now initialized in init.php
 }
 
 // Initialize the plugin
+global $mpai_hooks_tester;
 $mpai_hooks_tester = new MPAI_Hooks_Tester();
 
 // Process admin actions
 add_action('admin_init', [$mpai_hooks_tester, 'process_admin_actions']);
 
-// Include the content hooks tester initialization
-require_once plugin_dir_path(__FILE__) . 'init.php';
+// Include the content hooks tester class
+require_once plugin_dir_path(__FILE__) . 'includes/class-mpai-content-hooks-tester.php';
+
+// Include the API hooks tester class
+require_once plugin_dir_path(__FILE__) . 'includes/class-mpai-api-hooks-tester.php';
+
+// Initialize the content hooks tester
+global $mpai_content_hooks_tester;
+$mpai_content_hooks_tester = new MPAI_Content_Hooks_Tester();
+
+// Initialize the API hooks tester
+global $mpai_api_hooks_tester;
+$mpai_api_hooks_tester = new MPAI_API_Hooks_Tester();
+
+// Include the admin menu integration
+require_once plugin_dir_path(__FILE__) . 'admin-menu.php';
+
+// Log initialization
+if (function_exists('mpai_log_debug')) {
+    mpai_log_debug('Content Hooks Tester initialized from main plugin file');
+    mpai_log_debug('API Hooks Tester initialized from main plugin file');
+}
