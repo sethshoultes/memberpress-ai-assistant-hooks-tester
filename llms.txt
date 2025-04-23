@@ -1,0 +1,27 @@
+# MemberPress AI Assistant - Hooks Tester
+
+> A WordPress plugin that provides a testing framework for MemberPress AI Assistant hooks and demonstrates implementation patterns for extension developers.
+
+This plugin serves both as a reference implementation and testing tool for developers working with the MemberPress AI Assistant plugin. It logs hook executions, provides an admin UI for visualization, and demonstrates best practices for utilizing the extensive hooks system provided by the AI Assistant.
+
+## Documentation
+
+- [WordPress Plugin Development](https://developer.wordpress.org/plugins/): Official WordPress plugin development documentation
+- [MemberPress Developer Portal](https://developer.memberpress.com): MemberPress development documentation
+- [WordPress Action & Filter Hooks](https://developer.wordpress.org/plugins/hooks/): WordPress hooks reference
+
+## Hook Categories
+
+- [Content Generation Hooks](code://MPAI_Content_Hooks_Tester): Modify AI-generated content, formatting, and post data
+- [Admin Interface Hooks](code://MPAI_HOOK_FILTER_settings): Customize admin interfaces, settings fields, and chat UI
+- [API Integration Hooks](code://MPAI_API_Hooks_Tester): Intercept and modify API requests, responses, and provider selection
+- [Error Handling Hooks](code://MPAI_HOOK_FILTER_error): Customize error messages, recovery strategies, and retry logic
+- [Logging Hooks](code://MPAI_HOOK_FILTER_log): Modify log entries, levels, retention policies, and sanitization
+
+## Implementation Examples
+
+- [Content Formatting Rule](code://filter_content_formatting): Add custom formatting options to the AI Assistant
+- [Chat Interface Theming](code://filter_chat_interface_render): Customize the appearance of the chat interface
+- [API Usage Metrics](code://track_api_usage): Track and analyze API usage patterns
+- [User-Friendly Errors](code://filter_error_message): Improve error messages for better user experience
+- [Log Data Sanitization](code://filter_sanitize_log_data): Properly sanitize sensitive data in logs
